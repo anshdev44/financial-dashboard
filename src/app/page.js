@@ -1,65 +1,98 @@
+"use client";
 import Image from "next/image";
+import React from "react";
+import Navbar from "./components/navbar";
+import Card from "./components/card";
+import LineChartExample from "./components/line";
+import {
+  Wallet,
+  ArrowUpRight,
+  ArrowDownRight,
+  Donut,
+  User,
+  ArrowRightLeft,
+  FileText,
+  Target,
+  Settings,
+} from "lucide-react";
+import NestedDonut from "./components/donut";
+import Transaction from "./components/transactions";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
+    <div className="flex flex-col lg:flex-row">
+      <div className="hidden lg:flex w-[15%] bg-[#131313] h-[100vh] flex-col py-8 px-4 border-r border-white/5  left-0 top-0">
+        <div className="mb-10 px-3">
+          <h1 className="text-white font-extrabold text-2xl tracking-tighter italic">
+            Finance Tracker
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <nav className="flex flex-col gap-2 flex-1">
+          <>
+          <button className="cursor-pointer flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#00E0FF]/10 text-[#00E0FF] font-semibold text-sm transition-all border-l-2 border-[#00E0FF] shadow-[inset_0_0_10px_rgba(0,224,255,0.05)]">
+            <User size={18} /> Account
+          </button>
+          </>
+         
+          <Link href={"/transactions"}>
+          <button className="cursor-pointer flex items-center gap-3 px-4 py-3 rounded-2xl text-[#8F8F8F] hover:bg-white/5 hover:text-white font-semibold text-sm transition-all group">
+            <ArrowRightLeft
+              size={18}
+              className="group-hover:text-[#00E0FF] transition-colors"
+            />{" "}
+            Transactions
+          </button>
+          </Link>
+        </nav>
+      </div>
+      {/* left wala */}
+      <div className="w-full lg:w-[85%]">
+        <div className="ml-auto flex justify-center">
+          <Navbar />
         </div>
-      </main>
+
+        <div className="ml-0 lg:ml-2 flex flex-col xl:flex-row justify-center mt-8 gap-7 px-4 lg:px-0">
+          {/* 3 boxes */}
+          <div className="flex w-full xl:w-[60%] flex-col gap-6">
+            <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 ">
+              <Card
+                title="Balance"
+                amount="₹1,20,500"
+                change="+5.4%"
+                subtitle="This Month"
+                type="balance"
+                icon={<Wallet className="text-white w-5 h-5" />}
+              />
+              <Card
+                title="Income"
+                amount="₹45,000"
+                change="+12.3%"
+                subtitle="This Month"
+                type="income"
+                icon={<ArrowUpRight className="text-green-400 w-5 h-5" />}
+              />
+              <Card
+                title="Expenses"
+                amount="₹28,500"
+                change="-8.5%"
+                subtitle="This Month"
+                type="expense"
+                icon={<ArrowDownRight className="text-red-400 w-5 h-5" />}
+              />
+            </div>
+            <Transaction />
+          </div>
+          {/* graphs top of each other */}
+          <div className="w-full xl:w-[35%] flex flex-col gap-5 mr-0 lg:mr-5 mb-10 lg:mb-0">
+            <LineChartExample />
+            <div className="flex justify-center flex-col items-center">
+              <NestedDonut />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
