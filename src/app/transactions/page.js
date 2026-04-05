@@ -109,7 +109,9 @@ const Page = () => {
           <h1 className="text-white font-extrabold text-2xl italic tracking-tighter">Finance Tracker</h1>
         </div>
         <nav className="flex flex-col gap-2 flex-1">
+          <Link href={"/"}>
           <button className="cursor-pointer flex items-center gap-3 px-4 py-3 rounded-2xl text-[#8F8F8F] font-semibold text-sm hover:bg-white/5 transition-all"><User size={18} /> Account</button>
+          </Link>
           <button className="cursor-pointer flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#00E0FF]/10 text-[#00E0FF] font-semibold text-sm border-l-2 border-[#00E0FF]"><ArrowRightLeft size={18} /> Transactions</button>
         </nav>
       </aside>

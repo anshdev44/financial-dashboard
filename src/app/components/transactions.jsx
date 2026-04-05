@@ -30,9 +30,11 @@ const Transaction = () => {
                 Recent Activity
               </h2>
             </div>
-            <button className="text-[#8F8F8F] text-sm font-medium hover:text-[#CFF008] transition-colors bg-white/5 px-4 py-1.5 rounded-lg">
+            <Link href={"/transactions"}>
+            <button className="cursor-pointer text-[#8F8F8F] text-sm font-medium hover:text-[#CFF008] transition-colors bg-white/5 px-4 py-1.5 rounded-lg">
               View All
             </button>
+            </Link>
           </div>
 
           <div className="flex flex-col gap-4">
